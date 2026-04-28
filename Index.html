@@ -12,13 +12,27 @@
 <div class="container py-5">
     <h1 class="text-center mb-2 title">Commute Carbon Tracker</h1>
     <p class="text-center subtitle">Track your eco impact in seconds</p>
-    
+
         <div class="row g-3 mb-3">
             <div class="col-md-12">
                 <input type="text" id="username" class="form-control input-style"
                        placeholder="Enter your name" oninput="updateName()">
             </div>
         </div>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <input type="number" id="distance" class="form-control input-style"
+                       placeholder="Distance (km)">
+            </div>
+
+            <div class="col-md-4">
+                <select id="mode" class="form-select input-style">
+                    <option value="car"> Car</option>
+                    <option value="bus"> Bus</option>
+                    <option value="bike">Bike</option>
+                    <option value="walk">Walk</option>
+                </select>
+            </div>
 </div>
         
 </body>
