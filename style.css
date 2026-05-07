@@ -46,9 +46,8 @@ body{
     transform: scale(1.05);
 }
 .list-group-item {
-    border: none;
-    border-radius: 100px;
-    margin-bottom: 100px;
+    border-radius: 10px;
+    margin-bottom: 10px;
     background: #f1fdf6;
     font-weight: 500;
 }
