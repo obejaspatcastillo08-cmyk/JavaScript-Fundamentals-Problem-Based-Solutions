@@ -45,3 +45,10 @@ body{
 .btn-custom:hover {
     transform: scale(1.05);
 }
+.list-group-item {
+    border: none;
+    border-radius: 100px;
+    margin-bottom: 100px;
+    background: #f1fdf6;
+    font-weight: 500;
+}
