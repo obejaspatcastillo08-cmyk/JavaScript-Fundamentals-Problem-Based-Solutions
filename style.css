@@ -27,3 +27,7 @@ body{
     font-size: 1.5rem;
     font-weight: bold;
 }
+.input-style{
+    border-radius: 10px;
+    padding: 10px;
+}
