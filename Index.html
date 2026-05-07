@@ -33,7 +33,28 @@
                     <option value="walk">Walk</option>
                 </select>
             </div>
+            <div class="col-md-4">
+                <button class="btn btn-success w-100 btn-custom" onclick="addTrip()">
+                    Add Trip
+                </button>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card custom-card p-4 h-100">
+                <h3>Daily Logs</h3>
+                <ul id="loglist" class="list-group mt-3"></ul>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card summary-card p-4 text-center">
+                <h4 id="greeting">Weekly Impact</h4>
+                <p id="summary" class="summary-text">No data yet</p>
+            </div>
+        </div>
+    </div>
 </div>
-        
+<script src="script.js"></script>
 </body>
 </html>
