@@ -35,3 +35,10 @@ body{
     text-align:center;
     font-weight:500;
 }
+.btn-custom {
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 12px;
+    transition: 0.3s;
+}
