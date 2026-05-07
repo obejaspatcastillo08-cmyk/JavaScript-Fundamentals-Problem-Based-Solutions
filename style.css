@@ -42,3 +42,6 @@ body{
     padding: 12px;
     transition: 0.3s;
 }
+.btn-custom:hover {
+    transform: scale(1.05);
+}
