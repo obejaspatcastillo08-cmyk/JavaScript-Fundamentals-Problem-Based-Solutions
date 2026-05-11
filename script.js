@@ -39,11 +39,12 @@ function addTrip() {
 
     document.getElementById("distance").value = "";
 }
+
 function renderTrips() {
     const logList = document.getElementById("logList");
     logList.innerHTML = "";
 
-        trips.forEach((trip) => {
+    trips.forEach((trip) => {
         const li = document.createElement("li");
         li.className = "list-group-item";
 
@@ -52,4 +53,12 @@ function renderTrips() {
 
         logList.appendChild(li);
     });
+}
+
+function updateSummary() {
+    const totalTrips = trips.length;
+    const totalSaved = trips.reduce((sum, t) => sum + t.savedCO2, 0);
+
+    document.getElementById("summary").textContent =
+        `${totalTrips} trips = ${totalSaved.toFixed(2)} kg CO₂ saved this week`;
 }
