@@ -42,3 +42,7 @@ function addTrip() {
 function renderTrips() {
     const logList = document.getElementById("logList");
     logList.innerHTML = "";
+
+        trips.forEach((trip) => {
+        const li = document.createElement("li");
+        li.className = "list-group-item";
