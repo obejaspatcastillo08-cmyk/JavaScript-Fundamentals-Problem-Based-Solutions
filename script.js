@@ -17,3 +17,12 @@ function updateName() {
         greeting.textContent = "🌍 Weekly Impact";
     }
 }
+
+function addTrip() {
+    const distance = parseFloat(document.getElementById("distance").value);
+    const mode = document.getElementById("mode").value;
+
+    if (!distance || distance <= 0) {
+        alert("Please enter a valid distance.");
+        return;
+    }
