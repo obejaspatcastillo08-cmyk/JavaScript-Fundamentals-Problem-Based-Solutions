@@ -46,3 +46,10 @@ function renderTrips() {
         trips.forEach((trip) => {
         const li = document.createElement("li");
         li.className = "list-group-item";
+
+        li.textContent =
+            `🚴 ${trip.mode.toUpperCase()} - ${trip.distance} km → Saved ${trip.savedCO2.toFixed(2)} kg CO₂`;
+
+        logList.appendChild(li);
+    });
+}
