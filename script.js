@@ -39,3 +39,6 @@ function addTrip() {
 
     document.getElementById("distance").value = "";
 }
+function renderTrips() {
+    const logList = document.getElementById("logList");
+    logList.innerHTML = "";
