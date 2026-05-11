@@ -26,3 +26,7 @@ function addTrip() {
         alert("Please enter a valid distance.");
         return;
     }
+
+    const actualCO2 = distance * carbonRates[mode];
+    const carCO2 = distance * carbonRates["car"];
+    const savedCO2 = carCO2 - actualCO2;
