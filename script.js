@@ -65,10 +65,14 @@ function addTrip(){
     const savedCO2 =
         carCO2 - actualCO2;
 
+    const today =
+        new Date().toLocaleDateString();
+
     trips.push({
         distance,
         mode,
-        savedCO2
+        savedCO2,
+        date: today
     });
 
     renderTrips();
@@ -96,7 +100,7 @@ function renderTrips(){
         li.className = "list-group-item";
 
         li.textContent =
-        `${emojis[trip.mode]} ${modeNames[trip.mode]} • ${trip.distance} km • Saved ${trip.savedCO2.toFixed(2)} kg CO₂`;
+        `${emojis[trip.mode]} ${modeNames[trip.mode]} • ${trip.distance} km • Saved ${trip.savedCO2.toFixed(2)} kg CO₂ • ${trip.date}`;
 
         logList.appendChild(li);
     });
