@@ -26,20 +26,10 @@ function updateName(){
     const nameInput =
         document.getElementById("username").value.trim();
 
-    const greeting =
-        document.getElementById("greeting");
-
-    if(nameInput !== ""){
-
-        greeting.textContent =
-        `🌍 ${nameInput}'s Weekly Impact`;
-    }
-
-    else{
-
-        greeting.textContent =
-        "🌍 Weekly Impact";
-    }
+    document.getElementById("greeting").textContent =
+        nameInput
+        ? `🌍 ${nameInput}'s Weekly Impact`
+        : "🌍 Weekly Impact";
 }
 
 function addTrip(){
@@ -50,8 +40,7 @@ function addTrip(){
     const mode =
         document.getElementById("mode").value;
 
-    if(!distance || distance <= 0){
-
+    if(isNaN(distance) || distance <= 0){
         alert("Please enter a valid distance.");
         return;
     }
@@ -59,30 +48,39 @@ function addTrip(){
     const actualCO2 =
         distance * carbonRates[mode];
 
-    const carCO2 =
-        distance * carbonRates["car"];
-
     const savedCO2 =
-        carCO2 - actualCO2;
+        (distance * carbonRates.car) - actualCO2;
 
-    const today =
-        new Date().toLocaleDateString();
+    const now = new Date();
+
+    // ⏰ TIME (03:46 AM)
+    const timeOnly = now.toLocaleTimeString(undefined, {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true
+    });
+
+    // 📅 DATE (Tue, May 19, 2026)
+    const dateOnly = now.toLocaleDateString(undefined, {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+        year: "numeric"
+    });
 
     trips.push({
         distance,
         mode,
         savedCO2,
-        date: today
+        time: timeOnly,
+        date: dateOnly
     });
 
     renderTrips();
     updateSummary();
-    updateName();
 
     document.getElementById("distance").value = "";
     document.getElementById("mode").selectedIndex = 0;
-
-    alert("Trip added successfully 🌱");
 }
 
 function renderTrips(){
@@ -92,49 +90,51 @@ function renderTrips(){
 
     logList.innerHTML = "";
 
+    if(trips.length === 0){
+
+        logList.innerHTML = `
+            <li class="list-group-item text-center text-muted">
+                No trips added yet.
+            </li>
+        `;
+        return;
+    }
+
     trips.forEach((trip)=>{
 
-        const li =
-            document.createElement("li");
-
+        const li = document.createElement("li");
         li.className = "list-group-item";
 
-        li.textContent =
-        `${emojis[trip.mode]} ${modeNames[trip.mode]} • ${trip.distance} km • Saved ${trip.savedCO2.toFixed(2)} kg CO₂ • ${trip.date}`;
+        // ✅ FINAL 2-LINE FORMAT
+        li.innerHTML = `
+            <div style="font-weight:600; margin-bottom:4px;">
+                ${trip.date}
+            </div>
+            <div>
+                ${trip.time} → ${emojis[trip.mode]} ${modeNames[trip.mode]} ${trip.distance} km → Saved ${trip.savedCO2.toFixed(2)} kg CO₂
+            </div>
+        `;
 
         logList.appendChild(li);
     });
-
-    if(trips.length === 0){
-
-        logList.innerHTML =
-        `
-        <li class="list-group-item text-center text-muted">
-            No trips added yet.
-        </li>
-        `;
-    }
 }
 
 function updateSummary(){
 
-    const totalTrips =
-        trips.length;
+    const totalTrips = trips.length;
 
-    const totalSaved =
-        trips.reduce((sum, t)=>
+    const totalSaved = trips.reduce((sum, t)=>
         sum + t.savedCO2, 0);
 
     document.getElementById("summary").textContent =
-    `You completed ${totalTrips} eco-friendly trips and saved ${totalSaved.toFixed(2)} kg of CO₂ this week 🌱`;
+        `You completed ${totalTrips} eco-friendly trips and saved ${totalSaved.toFixed(2)} kg of CO₂ this week 🌱`;
 }
 
 function clearTrips(){
 
+    if(!confirm("Are you sure you want to clear all trips?")) return;
+
     trips = [];
-
     renderTrips();
-
-    document.getElementById("summary").textContent =
-    "No data yet";
+    updateSummary();
 }
