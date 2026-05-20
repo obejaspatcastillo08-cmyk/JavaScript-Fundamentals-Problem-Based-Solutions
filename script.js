@@ -53,14 +53,12 @@ function addTrip(){
 
     const now = new Date();
 
-    // ⏰ TIME (03:46 AM)
     const timeOnly = now.toLocaleTimeString(undefined, {
         hour: "2-digit",
         minute: "2-digit",
         hour12: true
     });
 
-    // 📅 DATE (Tue, May 19, 2026)
     const dateOnly = now.toLocaleDateString(undefined, {
         weekday: "short",
         month: "short",
@@ -105,7 +103,6 @@ function renderTrips(){
         const li = document.createElement("li");
         li.className = "list-group-item";
 
-        // ✅ FINAL 2-LINE FORMAT
         li.innerHTML = `
             <div style="font-weight:600; margin-bottom:4px;">
                 ${trip.date}
